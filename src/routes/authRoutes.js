@@ -11,6 +11,10 @@
  *                  schema:
  *                      type: object
  *                      properties:
+ *                          firstName:
+ *                              type: string
+ *                          lastName:
+ *                              type: string
  *                          email:
  *                              type: string
  *                          password:
@@ -26,4 +30,8 @@
  */
 
 const authController = require('../controllers/authController');
+const express = require('express');
+const router = express.Router();
 router.post('/register', authController.register);
+
+module.exports = router;
