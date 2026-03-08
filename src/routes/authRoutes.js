@@ -22,6 +22,12 @@
  *                          role:
  *                              type: string
  *                              enum: [agent, manager, admin]
+ *                      example: 
+ *                          firstName: "Mohamed Aziz"
+ *                          lastName: "Hafhouf"
+ *                          email: "azizhafhouf@gmail.com"
+ *                          password: "TestingPass"
+ *                          role: "agent"
  *      responses:
  *          201:
  *              description: User created successfully

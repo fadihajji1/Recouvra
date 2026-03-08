@@ -29,10 +29,12 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 userSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next();
+  if (!this.isModified('password')) {
+    return next();
+  }
   try {
     this.password = await argon2.hash(this.password);
-    next();
+    next(); 
   } catch (err) {
     next(err);
   }

@@ -6,13 +6,12 @@ exports.register = async (req, res) => {
     try {
         const {firstName, lastName, email, password, role} = req.body;
 
-        const hashedPassword = await argon2.hash(password);
 
         const newUser = new User({
             firstName, 
             lastName,
             email,
-            password: hashedPassword,
+            password,
             role
         });
 
