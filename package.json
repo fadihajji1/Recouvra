@@ -16,10 +16,21 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js --watch"
   },
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^1.13.6",
     "express": "^5.2.1"
+=======
+    "argon2": "^0.44.0",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "joi": "^18.0.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.2.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+>>>>>>> 94368a329c820a2d7de5dd256e667eede011f8d1
   }
 }
