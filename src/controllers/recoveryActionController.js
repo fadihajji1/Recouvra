@@ -1,9 +1,6 @@
 const RecoveryAction = require('../models/RecoveryAction');
 const Invoice = require('../models/Invoice');
 
-// @desc    Create recovery action
-// @route   POST /api/recovery-actions
-// @access  Private
 const createRecoveryAction = async (req, res, next) => {
   try {
     const invoice = await Invoice.findById(req.body.invoice);
@@ -25,9 +22,6 @@ const createRecoveryAction = async (req, res, next) => {
   }
 };
 
-// @desc    Get all recovery actions
-// @route   GET /api/recovery-actions
-// @access  Private
 const getRecoveryActions = async (req, res, next) => {
   try {
     const { page = 1, limit = 10, invoice, status } = req.query;
@@ -58,9 +52,6 @@ const getRecoveryActions = async (req, res, next) => {
   }
 };
 
-// @desc    Get recovery action by ID
-// @route   GET /api/recovery-actions/:id
-// @access  Private
 const getRecoveryAction = async (req, res, next) => {
   try {
     const action = await RecoveryAction.findById(req.params.id)
@@ -80,9 +71,6 @@ const getRecoveryAction = async (req, res, next) => {
   }
 };
 
-// @desc    Update recovery action
-// @route   PUT /api/recovery-actions/:id
-// @access  Private
 const updateRecoveryAction = async (req, res, next) => {
   try {
     const action = await RecoveryAction.findByIdAndUpdate(
@@ -104,9 +92,6 @@ const updateRecoveryAction = async (req, res, next) => {
   }
 };
 
-// @desc    Delete recovery action
-// @route   DELETE /api/recovery-actions/:id
-// @access  Private (Admin/Manager)
 const deleteRecoveryAction = async (req, res, next) => {
   try {
     const action = await RecoveryAction.findById(req.params.id);
