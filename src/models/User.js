@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['agent', 'manager', 'admin'],
         default: 'agent'
-    }
+    },
 }, { timestamps: true });
 
 userSchema.pre('save', async function() { 
