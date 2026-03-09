@@ -79,7 +79,6 @@ const getInvoice = async (req, res, next) => {
 
     if (!invoice) return res.status(404).json({ message: 'Invoice not found' });
 
-    // Authorization: Agents can only view if they own the client
     if (req.user.role === 'agent') {
       const client = await Client.findById(invoice.client._id);
       if (client.createdBy.toString() !== req.user.id) {
