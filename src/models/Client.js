@@ -1,0 +1,47 @@
+const mongoose = require('mongoose');
+
+const clientSchema = new mongoose.Schema(
+  {
+    firstName: {
+      type: String,
+      required: [true, 'Please add a first name'],
+      trim: true,
+    },
+    lastName: {
+      type: String,
+      required: [true, 'Please add a last name'],
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: [true, 'Please add an email'],
+      unique: true,
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        'Please add a valid email',
+      ],
+    },
+    phone: {
+      type: String,
+      maxlength: [20, 'Phone number cannot be longer than 20 characters'],
+    },
+    company: {
+      type: String,
+      trim: true,
+    },
+    address: {
+      type: String,
+    },
+
+    createdBy: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = mongoose.model('Client', clientSchema);

@@ -13,6 +13,12 @@ app.use(express.static("public"));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/auth', require('./src/routes/authRoutes'));
+app.use('/api/users', require('./src/routes/userRoutes'));
+app.use('/api/clients', require('./src/routes/clientRoutes'));
+app.use('/api/invoices', require('./src/routes/invoiceRoutes'));
+app.use('/api/payments', require('./src/routes/paymentRoutes'));
+
+
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

@@ -1,8 +1,5 @@
 const User = require('../models/User');
 
-// @desc    Get all users
-// @route   GET /api/users
-// @access  Private/Admin
 const getUsers = async (req, res, next) => {
   try {
     const users = await User.find().select('-password');
@@ -16,9 +13,7 @@ const getUsers = async (req, res, next) => {
   }
 };
 
-// @desc    Get single user
-// @route   GET /api/users/:id
-// @access  Private/Admin
+
 const getUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id).select('-password');
@@ -36,15 +31,16 @@ const getUser = async (req, res, next) => {
   }
 };
 
-// @desc    Update user
-// @route   PUT /api/users/:id
-// @access  Private/Admin
+
 const updateUser = async (req, res, next) => {
   try {
     const user = await User.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true, runValidators: true }
+      { 
+        returnDocument: 'after',
+        runValidators: true 
+      }
     ).select('-password');
 
     if (!user) {
@@ -60,9 +56,7 @@ const updateUser = async (req, res, next) => {
   }
 };
 
-// @desc    Delete user
-// @route   DELETE /api/users/:id
-// @access  Private/Admin
+
 const deleteUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
@@ -71,7 +65,6 @@ const deleteUser = async (req, res, next) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Prevent deleting yourself
     if (user._id.toString() === req.user.id) {
       return res.status(400).json({ message: 'You cannot delete your own account' });
     }
