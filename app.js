@@ -18,6 +18,8 @@ app.use('/api/clients', require('./src/routes/clientRoutes'));
 app.use('/api/invoices', require('./src/routes/invoiceRoutes'));
 app.use('/api/payments', require('./src/routes/paymentRoutes'));
 app.use('/api/recovery-actions', require('./src/routes/recoveryActionRoutes'));
+app.use('/api/statistics', require('./src/routes/statisticsRoutes'));
+
 
 
 
