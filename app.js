@@ -15,6 +15,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/auth', require('./src/routes/authRoutes'));
 app.use('/api/users', require('./src/routes/userRoutes'));
 app.use('/api/clients', require('./src/routes/clientRoutes'));
+app.use('/api/invoices', require('./src/routes/invoiceRoutes'));
 
 
 const PORT = process.env.PORT || 3001;
