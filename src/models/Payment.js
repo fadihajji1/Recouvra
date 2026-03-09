@@ -9,7 +9,7 @@ const paymentSchema = new mongoose.Schema({
   amount: {
     type: Number,
     required: true,
-    min: 0
+    min: [0, 'Amount must be positive']
   },
   paymentDate: {
     type: Date,
@@ -19,11 +19,18 @@ const paymentSchema = new mongoose.Schema({
   paymentMethod: {
     type: String,
     enum: ['bank_transfer', 'check', 'cash', 'credit_card', 'other'],
-    required: true
+    required: true,
+    default: 'other'
   },
-  reference: String,
-  notes: String,
-  recordedBy: {
+  reference: {
+    type: String,
+    trim: true
+  },
+  notes: {
+    type: String,
+    trim: true
+  },
+  createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
