@@ -7,14 +7,13 @@ const {
   deleteUser
 } = require('../controllers/userController');
 
-const { protect, adminOnly } = require('../middleware/authMiddleware');
+const { protect, authorizeRoles } = require('../middleware/authMiddleware');
 
 /**
  * Global Middleware for this Router
  * Every route below this will require a valid JWT AND an Admin role.
  */
 router.use(protect);
-router.use(adminOnly);
 
 //const { protect, admin } = require('../middleware/authMiddleware');
 
@@ -35,7 +34,7 @@ router.use(adminOnly);
  *       403:
  *         description: Not authorized as an admin
  */
-router.route('/').get(getUsers);
+router.get('/', authorizeRoles('agent', 'manager', 'admin'),getUsers);
 //router.route('/').get(protect, admin, getUsers);
 
 /**
@@ -60,9 +59,7 @@ router.route('/').get(getUsers);
  *       404:
  *         description: User not found
  */
-
-router.route('/:id').get(getUser);
-
+router.get('/:id', authorizeRoles('agent', 'manager', 'admin'),getUser);
 /**
  * @swagger
  * /api/users/{id}:
@@ -105,7 +102,7 @@ router.route('/:id').get(getUser);
  *       404:
  *         description: User not found
  */
-router.route('/:id').put(updateUser);
+router.put('/:id', authorizeRoles('agent', 'manager', 'admin'),updateUser);
 
 /**
  * @swagger
@@ -130,6 +127,6 @@ router.route('/:id').put(updateUser);
  *       404:
  *         description: User not found
  */
-router.route('/:id').delete(deleteUser);
+router.delete('/:id', authorizeRoles('agent', 'manager', 'admin'),deleteUser);
 
 module.exports = router;
